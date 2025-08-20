@@ -32,6 +32,8 @@ export async function deleteFile(id: number): Promise<void>
 ## Project Setup
 
 ```sh
+clone project
+
 npm install
 ```
 
