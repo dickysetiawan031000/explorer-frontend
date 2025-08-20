@@ -1,18 +1,33 @@
-# elysia-explorer-frontend-app
+# Windows Explorer Web App
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple **Windows Explorer-like web application** built with **Vue 3 + TypeScript** on the frontend and **Elysia** (Node.js) on the backend.  
+Supports displaying folders and files, plus add/delete functionality using backend API.
 
-## Recommended IDE Setup
+**Repository Backend:** [https://github.com/dickysetiawan031000/explorer-backend](https://github.com/dickysetiawan031000/explorer-backend)  
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Type Support for `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Frontend API Functions
 
-## Customize configuration
+**folder.ts**
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+```ts
+export async function getAllFolders(): Promise<Folder[]>
+export async function getFolderChildren(folderId: number): Promise<Folder[]>
+export async function createFolder(name: string, parentId: number | null): Promise<Folder>
+export async function deleteFolder(id: number): Promise<void>
+
+```
+
+**file.ts**
+
+```ts
+export async function getFilesByFolder(folderId: number): Promise<FileItem[]>
+export async function createFile(name: string, folderId: number): Promise<FileItem>
+export async function deleteFile(id: number): Promise<void>
+
+```
 
 ## Project Setup
 
@@ -36,29 +51,4 @@ npm run build
 
 ```sh
 npm run test:unit
-```
-
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-npm run build
-
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
